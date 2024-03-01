@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app_flutter/cubits/weather_cubit/weather_cubit.dart';
 import 'package:weather_app_flutter/models/weather_model.dart';
 import 'package:weather_app_flutter/providers/weather_provider.dart';
 import 'package:weather_app_flutter/services/weather_services.dart';
 
-class SearchPage extends StatefulWidget {
-  @override
-  State<SearchPage> createState() => _SearchPageState();
-}
 
-class _SearchPageState extends State<SearchPage> {
+class SearchPage extends StatelessWidget {
   String? cityName;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool isLoad = false;
-
-  // SearchPage({this.updateUi});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,23 +43,25 @@ class _SearchPageState extends State<SearchPage> {
                 onFieldSubmitted: (val) async {
                   if(formKey.currentState!.validate())
                     {
-                      print('inside submitted');
-                      isLoad = true;
-                      setState((){});
                       cityName = val;
-                      WeatherServices weatherServices = WeatherServices();
-                      WeatherModel? weather =
-                      await weatherServices.getWeather(cityName: cityName!);
-                      Provider.of<WeatherProvider>(context, listen: false).weatherData =
-                          weather;
-                      Provider.of<WeatherProvider>(context, listen: false).cityName =
-                          cityName;
-                      // Provider.of<WeatherProvider>(context).isLoad = false;
-                      isLoad = false;
-                      setState((){});
+                      BlocProvider.of<WeatherCubit>(context)
+                          .getWeather(cityName: cityName!);
+                      // print('inside submitted');
+                      // isLoad = true;
+                      // setState((){});
+                      // cityName = val;
+                      // WeatherServices weatherServices = WeatherServices();
+                      // WeatherModel? weather =
+                      // await weatherServices.getWeather(cityName: cityName!);
+                      // Provider.of<WeatherProvider>(context, listen: false).weatherData =
+                      //     weather;
+                      // Provider.of<WeatherProvider>(context, listen: false).cityName =
+                      //     cityName;
+                      // // Provider.of<WeatherProvider>(context).isLoad = false;
+                      // isLoad = false;
+                      // setState((){});
                       Navigator.pop(context);
                     }
-                  // print(weather);
                 },
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
@@ -81,25 +79,27 @@ class _SearchPageState extends State<SearchPage> {
                         print('inside iconbutton');
                         // Provider.of<WeatherProvider>(context).isLoad = true;
                         if (formKey.currentState!.validate()) {
-                          isLoad = true;
-                          setState((){});
-                          WeatherServices weatherServices = WeatherServices();
-                          WeatherModel? weather =
-                          await weatherServices.getWeather(cityName: cityName!);
-                          Provider.of<WeatherProvider>(context, listen: false)
-                              .weatherData = weather;
-                          Provider.of<WeatherProvider>(context, listen: false)
-                              .cityName = cityName;
+                          // isLoad = true;
+                          // setState((){});
+                          // WeatherServices weatherServices = WeatherServices();
+                          // WeatherModel? weather =
+                          // await weatherServices.getWeather(cityName: cityName!);
+                          // Provider.of<WeatherProvider>(context, listen: false)
+                          //     .weatherData = weather;
+                          // Provider.of<WeatherProvider>(context, listen: false)
+                          //     .cityName = cityName;
+                          BlocProvider.of<WeatherCubit>(context)
+                              .getWeather(cityName: cityName!);
                           Navigator.pop(context);
                         }
-                        isLoad = false;
-                        setState((){});
+                        // isLoad = false;
+                        // setState((){});
                         // Provider.of<WeatherProvider>(context).isLoad = false;
                       },
                       icon: const Icon(Icons.search_outlined)),
                 ),
               ),
-              isLoad? const Center(child:CircularProgressIndicator(),):Container(),
+              // isLoad? const Center(child:CircularProgressIndicator(),):Container(),
             ],
           ),
         ),

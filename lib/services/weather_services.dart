@@ -7,9 +7,8 @@ class WeatherServices {
   String baseUrl = 'http://api.weatherapi.com/v1';
   String apiKey = 'a3a269848b5944ef92d62238232303';
 
-  Future<WeatherModel?> getWeather({required String cityName}) async {
+    Future<WeatherModel?> getWeather({required String cityName}) async {
     WeatherModel? weather;
-    try{
       Uri url =
       Uri.parse(
           '$baseUrl/forecast.json?'
@@ -21,10 +20,6 @@ class WeatherServices {
       Map<String, dynamic> data = jsonDecode(response.body);
 
      weather =  WeatherModel.fromJson(data);
-    }catch(e){
-      // return e.
-
-    }
     return weather;
 
   }
