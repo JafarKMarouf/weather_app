@@ -15,8 +15,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  @override
+  const MyApp({super.key});
+  @overrde
   Widget build(BuildContext context) {
     // print(BlocProvider.of<WeatherCubit>(context).weatherData);
     return MaterialApp(
