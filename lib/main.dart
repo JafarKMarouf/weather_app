@@ -16,9 +16,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  @overrde
+  @override
+
   Widget build(BuildContext context) {
-    // print(BlocProvider.of<WeatherCubit>(context).weatherData);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Weather App',

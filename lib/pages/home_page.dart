@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // weatherData = Provider.of<WeatherProvider>(context).weatherData;
-
+    
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.blue,
